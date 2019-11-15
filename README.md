@@ -1,0 +1,1 @@
+# -irket-veritaban-mvc-uygulamas-
