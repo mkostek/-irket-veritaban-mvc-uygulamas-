@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sirketModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="sirketEntities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="birim" EntityType="sirketModel.birim" />
+    <EntitySet Name="cocuk" EntityType="sirketModel.cocuk" />
+    <EntitySet Name="gorevlendirme" EntityType="sirketModel.gorevlendirme" />
+    <EntitySet Name="il" EntityType="sirketModel.il" />
+    <EntitySet Name="ilce" EntityType="sirketModel.ilce" />
+    <EntitySet Name="personel" EntityType="sirketModel.personel" />
+    <EntitySet Name="proje" EntityType="sirketModel.proje" />
+    <EntitySet Name="unvan" EntityType="sirketModel.unvan" />
+    <AssociationSet Name="FK__personel__birim___22AA2996" Association="sirketModel.FK__personel__birim___22AA2996">
+      <End Role="birim" EntitySet="birim" />
+      <End Role="personel" EntitySet="personel" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cocuk__dogu_yeri__2C3393D0" Association="sirketModel.FK__cocuk__dogu_yeri__2C3393D0">
+      <End Role="ilce" EntitySet="ilce" />
+      <End Role="cocuk" EntitySet="cocuk" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cocuk__personel___2D27B809" Association="sirketModel.FK__cocuk__personel___2D27B809">
+      <End Role="personel" EntitySet="personel" />
+      <End Role="cocuk" EntitySet="cocuk" />
+    </AssociationSet>
+    <AssociationSet Name="FK__gorevlend__perso__33D4B598" Association="sirketModel.FK__gorevlend__perso__33D4B598">
+      <End Role="personel" EntitySet="personel" />
+      <End Role="gorevlendirme" EntitySet="gorevlendirme" />
+    </AssociationSet>
+    <AssociationSet Name="FK__gorevlend__proje__32E0915F" Association="sirketModel.FK__gorevlend__proje__32E0915F">
+      <End Role="proje" EntitySet="proje" />
+      <End Role="gorevlendirme" EntitySet="gorevlendirme" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ilce__il_no__164452B1" Association="sirketModel.FK__ilce__il_no__164452B1">
+      <End Role="il" EntitySet="il" />
+      <End Role="ilce" EntitySet="ilce" />
+    </AssociationSet>
+    <AssociationSet Name="FK__personel__dogum___21B6055D" Association="sirketModel.FK__personel__dogum___21B6055D">
+      <End Role="ilce" EntitySet="ilce" />
+      <End Role="personel" EntitySet="personel" />
+    </AssociationSet>
+    <AssociationSet Name="FK__personel__unvan___239E4DCF" Association="sirketModel.FK__personel__unvan___239E4DCF">
+      <End Role="unvan" EntitySet="unvan" />
+      <End Role="personel" EntitySet="personel" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="birim">
+    <Key>
+      <PropertyRef Name="birim_no" />
+    </Key>
+    <Property Name="birim_no" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="birim_ad" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="personel" Relationship="sirketModel.FK__personel__birim___22AA2996" FromRole="birim" ToRole="personel" />
+  </EntityType>
+  <EntityType Name="cocuk">
+    <Key>
+      <PropertyRef Name="cocuk_no" />
+    </Key>
+    <Property Name="cocuk_no" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="soyad" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="cinsiyet" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="dogum_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dogu_yeri" Type="Int32" Nullable="false" />
+    <Property Name="personel_no" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ilce" Relationship="sirketModel.FK__cocuk__dogu_yeri__2C3393D0" FromRole="cocuk" ToRole="ilce" />
+    <NavigationProperty Name="personel" Relationship="sirketModel.FK__cocuk__personel___2D27B809" FromRole="cocuk" ToRole="personel" />
+  </EntityType>
+  <EntityType Name="gorevlendirme">
+    <Key>
+      <PropertyRef Name="gorevlendirme_no" />
+    </Key>
+    <Property Name="gorevlendirme_no" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="proje_no" Type="Int32" Nullable="false" />
+    <Property Name="personel_no" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="personel" Relationship="sirketModel.FK__gorevlend__perso__33D4B598" FromRole="gorevlendirme" ToRole="personel" />
+    <NavigationProperty Name="proje" Relationship="sirketModel.FK__gorevlend__proje__32E0915F" FromRole="gorevlendirme" ToRole="proje" />
+  </EntityType>
+  <EntityType Name="il">
+    <Key>
+      <PropertyRef Name="il_no" />
+    </Key>
+    <Property Name="il_no" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+    <Property Name="il_ad" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="ilce" Relationship="sirketModel.FK__ilce__il_no__164452B1" FromRole="il" ToRole="ilce" />
+  </EntityType>
+  <EntityType Name="ilce">
+    <Key>
+      <PropertyRef Name="ilce_no" />
+    </Key>
+    <Property Name="ilce_no" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ilce_ad" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="il_no" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="cocuk" Relationship="sirketModel.FK__cocuk__dogu_yeri__2C3393D0" FromRole="ilce" ToRole="cocuk" />
+    <NavigationProperty Name="il" Relationship="sirketModel.FK__ilce__il_no__164452B1" FromRole="ilce" ToRole="il" />
+    <NavigationProperty Name="personel" Relationship="sirketModel.FK__personel__dogum___21B6055D" FromRole="ilce" ToRole="personel" />
+  </EntityType>
+  <EntityType Name="personel">
+    <Key>
+      <PropertyRef Name="personel_no" />
+    </Key>
+    <Property Name="personel_no" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="soyad" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="cinsiyet" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="dogum_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dogum_yeri" Type="Int32" Nullable="false" />
+    <Property Name="baslama_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="birim_no" Type="Int32" Nullable="false" />
+    <Property Name="unvan_no" Type="Int32" Nullable="false" />
+    <Property Name="calisma_saati" Type="Byte" Nullable="false" />
+    <Property Name="maas" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="prim" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="birim" Relationship="sirketModel.FK__personel__birim___22AA2996" FromRole="personel" ToRole="birim" />
+    <NavigationProperty Name="cocuk" Relationship="sirketModel.FK__cocuk__personel___2D27B809" FromRole="personel" ToRole="cocuk" />
+    <NavigationProperty Name="gorevlendirme" Relationship="sirketModel.FK__gorevlend__perso__33D4B598" FromRole="personel" ToRole="gorevlendirme" />
+    <NavigationProperty Name="ilce" Relationship="sirketModel.FK__personel__dogum___21B6055D" FromRole="personel" ToRole="ilce" />
+    <NavigationProperty Name="unvan" Relationship="sirketModel.FK__personel__unvan___239E4DCF" FromRole="personel" ToRole="unvan" />
+  </EntityType>
+  <EntityType Name="proje">
+    <Key>
+      <PropertyRef Name="proje_no" />
+    </Key>
+    <Property Name="proje_no" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="proje_ad" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="baslama_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="planlanan_bitis_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="gorevlendirme" Relationship="sirketModel.FK__gorevlend__proje__32E0915F" FromRole="proje" ToRole="gorevlendirme" />
+  </EntityType>
+  <EntityType Name="unvan">
+    <Key>
+      <PropertyRef Name="unvan_no" />
+    </Key>
+    <Property Name="unvan_no" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="unvan_ad" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="personel" Relationship="sirketModel.FK__personel__unvan___239E4DCF" FromRole="unvan" ToRole="personel" />
+  </EntityType>
+  <Association Name="FK__personel__birim___22AA2996">
+    <End Role="birim" Type="sirketModel.birim" Multiplicity="1" />
+    <End Role="personel" Type="sirketModel.personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="birim">
+        <PropertyRef Name="birim_no" />
+      </Principal>
+      <Dependent Role="personel">
+        <PropertyRef Name="birim_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cocuk__dogu_yeri__2C3393D0">
+    <End Role="ilce" Type="sirketModel.ilce" Multiplicity="1" />
+    <End Role="cocuk" Type="sirketModel.cocuk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilce">
+        <PropertyRef Name="ilce_no" />
+      </Principal>
+      <Dependent Role="cocuk">
+        <PropertyRef Name="dogu_yeri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cocuk__personel___2D27B809">
+    <End Role="personel" Type="sirketModel.personel" Multiplicity="1" />
+    <End Role="cocuk" Type="sirketModel.cocuk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personel">
+        <PropertyRef Name="personel_no" />
+      </Principal>
+      <Dependent Role="cocuk">
+        <PropertyRef Name="personel_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__gorevlend__perso__33D4B598">
+    <End Role="personel" Type="sirketModel.personel" Multiplicity="1" />
+    <End Role="gorevlendirme" Type="sirketModel.gorevlendirme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personel">
+        <PropertyRef Name="personel_no" />
+      </Principal>
+      <Dependent Role="gorevlendirme">
+        <PropertyRef Name="personel_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__gorevlend__proje__32E0915F">
+    <End Role="proje" Type="sirketModel.proje" Multiplicity="1" />
+    <End Role="gorevlendirme" Type="sirketModel.gorevlendirme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proje">
+        <PropertyRef Name="proje_no" />
+      </Principal>
+      <Dependent Role="gorevlendirme">
+        <PropertyRef Name="proje_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ilce__il_no__164452B1">
+    <End Role="il" Type="sirketModel.il" Multiplicity="1" />
+    <End Role="ilce" Type="sirketModel.ilce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="il">
+        <PropertyRef Name="il_no" />
+      </Principal>
+      <Dependent Role="ilce">
+        <PropertyRef Name="il_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__personel__dogum___21B6055D">
+    <End Role="ilce" Type="sirketModel.ilce" Multiplicity="1" />
+    <End Role="personel" Type="sirketModel.personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilce">
+        <PropertyRef Name="ilce_no" />
+      </Principal>
+      <Dependent Role="personel">
+        <PropertyRef Name="dogum_yeri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__personel__unvan___239E4DCF">
+    <End Role="unvan" Type="sirketModel.unvan" Multiplicity="1" />
+    <End Role="personel" Type="sirketModel.personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unvan">
+        <PropertyRef Name="unvan_no" />
+      </Principal>
+      <Dependent Role="personel">
+        <PropertyRef Name="unvan_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
