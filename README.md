@@ -12,7 +12,7 @@
   <li>proje ekleme,silme ve güncelleme işlemleri</li>
   <h3>personel sayfası</h3>
   <li>personel ekleme,silme ve güncelleme işlemleri</li>
-  <h3>gorev sayfası<h3>
+  <h3>gorev sayfası</h3>
     <li>personelin gorev alacağı projeleri barındırır</li>
     <li>gorev ekleme,silme ve güncelleme işlemleri</li>
     <h3 >cocuk sayfası</h3>
